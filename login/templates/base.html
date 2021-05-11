@@ -3,13 +3,19 @@
 {% load static %}
 
 
+<meta property="og:image" content="{% static 'logo.png' %}"/>  
+<meta property="og:title" content="MemePur | A Place for Memes"/>  
+<meta property="og:description" content="Top best Trending and latest Memes"/>  
+
 <meta name=”robots” content="index, follow">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<META NAME="geo.placename" CONTENT="India">
-<META NAME="geo.region" CONTENT="Uttar Pradesh UP">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<META NAME="geo.placename" CONTENT="India" />
+<META NAME="geo.region" CONTENT="Uttar Pradesh UP" />
+
+
 
 
 <link rel="icon" sizes="32x32" href="{% static 'favicon.ico' %}">
@@ -65,7 +71,8 @@
                 <div class="flex items-center justify-center mt-8">
                 <div class="flex items-center">
 
-    <img class="w-40 h-40 object-cover rounded-full" src="{% static 'logo.jpg' %}">
+                        <span class="text-white text-xl mx-2 font-semibold ">MemePur v1.0</span>
+
 
                    <!--
                     <img class="w-12 h-12 object-cover rounded-full" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}">
