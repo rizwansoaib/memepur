@@ -1,3 +1,4 @@
+
 """
 Django settings for memepur project.
 
@@ -29,7 +30,8 @@ AUTHENTICATION_BACKENDS = [
 SECRET_KEY = 'django-insecure-rp7x3_kwo5klx3*c)n*no_-vmga74jc$rs+l_&+w343)1l9b!#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -121,11 +123,19 @@ WSGI_APPLICATION = 'memepur.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'memepur',
+       'USER': 'rizwan',
+       'PASSWORD': 'Rizwan111',
+       'HOST': 'memepur.cgyvqvucbldt.ap-south-1.rds.amazonaws.com',
+       'PORT': '3306',
+       'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+
+
+   }
 }
+
 
 
 # Password validation
@@ -164,14 +174,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 
 
 STATIC_URL = '/static/'
-#STATIC_ROOT =  os.path.join(BASE_DIR,'static')
+#STATIC_ROOT = '/static'
 
+if DEBUG:
+   STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'static'),
+   ]
+else:
+   STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_URL= '/media/'
 
