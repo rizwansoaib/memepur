@@ -1,0 +1,93 @@
+
+
+
+
+<style>
+    .fa-heart {
+  color: red;
+  cursor: pointer;
+}
+    .fa-comment {
+        color: navajowhite;
+        cursor: pointer;
+    }
+</style>
+
+{% if like_post %}
+
+    {% for posts in lposts %}
+
+    {% for x in posts %}
+
+       <div class="bg-white border rounded-xl max-w-lg my-4 mx-3 mx-auto ease-in-out transform hover:scale-105 hover:translate-y-4" id="post" >
+
+    <a href="/post?id={{ x.photo_id }}">
+        <article class="post bg-gray-100 text-white relative">
+        <img class="mx-auto my-auto object-contain" src="/media/{{ x.url}}" width="700" height="1050"/>
+    <div class="overlay bg-gray-800 bg-opacity-25 w-full h-full absolute
+                                left-0 top-0 hidden">
+                <div class="flex justify-center items-center
+                                    space-x-4 h-full text-xl">
+                  <span class="p-2">
+                    <i class="fa-4x fas fa-heart"></i>
+                    {{ x.count_likes }}
+                  </span>
+
+                  <span class="p-2">
+                    <i class="fa-4x fas fa-comment"></i>
+                    {{ x.count_comments}}
+                  </span>
+                </div>
+              </div>
+
+        </article>
+
+
+
+
+</a></div>
+
+
+{% endfor %}
+
+{% endfor %}
+
+{% endif %}
+
+
+
+{% if memes %}
+
+{% for x in posts %}
+    <div class="bg-white border rounded-xl max-w-lg my-4 mx-3 mx-auto ease-in-out transform hover:scale-105 hover:translate-y-4" id="post" >
+
+    <a href="/post?id={{ x.photo_id }}">
+        <article class="post bg-gray-100 text-white relative">
+        <img class="mx-auto my-auto object-contain" src="/media/{{ x.url}}" width="700" height="1050"/>
+    <div class="overlay bg-gray-800 bg-opacity-25 w-full h-full absolute
+                                left-0 top-0 hidden">
+                <div class="flex justify-center items-center
+                                    space-x-4 h-full text-xl">
+                  <span class="p-2">
+                    <i class="fa-4x fas fa-heart"></i>
+                    {{ x.count_likes }}
+                  </span>
+
+                  <span class="p-2">
+                    <i class="fa-4x fas fa-comment"></i>
+                    {{ x.count_comments}}
+                  </span>
+                </div>
+              </div>
+
+        </article>
+
+
+
+
+</a></div>
+
+{% endfor %}
+
+
+{% endif %}
