@@ -1,0 +1,346 @@
+
+{% load socialaccount %}
+{% load static %}
+
+
+<meta name=”robots” content="index, follow">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<META NAME="geo.placename" CONTENT="India">
+<META NAME="geo.region" CONTENT="Uttar Pradesh UP">
+
+
+<link rel="icon" sizes="32x32" href="{% static 'favicon.ico' %}">
+
+
+
+<style>
+    {% include "css/tailwind.min.css" %}
+</style>
+
+<style>
+    {% include "css/sans-pro.css" %}
+</style>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/slider_tail.js' %}"></script>
+
+<!--
+<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+-->
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+
+
+<!-- component -->
+
+
+<div>
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+        <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
+
+        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0 ">
+
+
+            {% if request.user.is_authenticated %}
+            <div class="flex items-center justify-center mt-8">
+                <div class="flex items-center px-4">
+                   <img class="w-12 h-12 object-cover rounded-full" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}">
+
+
+                    <span class="text-white text-xl mx-2 font-semibold ">{{ request.user.socialaccount_set.all.0.extra_data.name }}</span>
+                </div>
+            </div>
+            {% else %}
+
+                <div class="flex items-center justify-center mt-8">
+                <div class="flex items-center">
+
+    <img class="w-40 h-40 object-cover rounded-full" src="{% static 'logo.jpg' %}">
+
+                   <!--
+                    <img class="w-12 h-12 object-cover rounded-full" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}">
+                    -->
+
+
+                </div>
+            </div>
+
+
+            {% endif %}
+
+            <nav class="mt-10 navbar-expand-md">
+
+
+            <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/">
+<i class="fa fa-home"></i>
+                    <span class="mx-4">Home</span>
+                </a>
+
+
+<a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/upload">
+<i class="fas fa-image"></i>                    <span class="mx-4">Post</span>
+                </a>
+
+
+
+
+
+
+
+
+
+
+                {% if user.is_authenticated %}
+
+
+
+
+
+
+              <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/notifications">
+<i class="fas fa-bell"></i>                <span  class="mx-4">Notification</span><span class="badge mb-3 bg-green-800 rounded-full  p-1 text-center object-right-top text-white text-sm mr-1" id="noti_count"></span>
+                </a>
+
+
+
+
+
+                             <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/profile?username={{ request.user.username }}">
+<i class="fa fa-user"></i>
+                    <span class="mx-4">Profile</span>
+                </a>
+
+
+                  <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/accounts/logout">
+<i class="fa fa-arrow-circle-right"></i>
+                    <span class="mx-4">Logout</span>
+                </a>
+
+
+  {% else %}
+                  <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/login">
+<i class="fa fa-arrow-circle-left"></i>
+                    <span class="mx-4">Login</span>
+                </a>
+  {% endif %}
+
+
+              <a class="flex items-center mt-4 py-2 px-6 block border-l-4 border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100" href="/contact">
+<i class="fas fa-question-circle"></i>
+                <span class="mx-4">Contact us</span>
+                </a>
+
+
+            </nav>
+        </div>
+
+          <div class="flex-1 flex flex-col overflow-hidden">
+                <div class="flex items-center">
+                    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                                   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        {% if request.user.is_authenticated %}
+        window.onload=noti_count();
+
+        {% endif %}
+
+        function noti_count() {
+
+            $.ajax(
+    {
+        type:"GET",
+        url: "/noti_count",
+        data:{
+
+        },
+        success: function( data )
+        {
+            //console.log(data)
+
+
+            if(data['noti_count'])
+            document.getElementById('noti_count').innerText=data['noti_count'];
+        }
+     })
+
+        }
+
+
+
+
+
+  $( function() {
+
+    $( "#tags" ).autocomplete({
+       source: '{% url 'autocomplete' %}',
+        minLength: 2,
+
+         select:function(e,ui) {
+      location.href = '/tag/'+ui.item.label.substring(1);;
+
+      }
+
+    });
+  } );
+  </script>
+
+
+         <style>
+             .ui-autocomplete {
+            border-radius: 0.25rem;
+            background-color: #ffffff;
+            padding: 0 0.6rem;
+            font-family: 'ptmono';
+        .ui-menu-item {
+            border: 1px solid #eceff1;
+            border-radius: 0.5rem;
+            .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active,
+    a.ui-button:active,
+    .ui-button:active,
+    .ui-button.ui-state-active:hover {
+            background-color: #ffffff;
+            border-color: #eceff1;
+            color: #ffffff;
+            }
+        }
+    }
+             .ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+         </style>
+
+
+<style>
+    .fa-heart {
+  color: red;
+  cursor: pointer;
+}
+    .fa-comment {
+        color: blue;
+        cursor: pointer;
+    }
+
+
+    .fa-retweet {
+        color: lightgreen;
+        cursor: pointer;
+    }
+
+    .fa-trash{
+        color: darkred;
+        cursor: pointer;
+    }
+
+
+
+</style>
+
+
+
+
+                <nav class="border-b  bg-white">
+
+  <div class="flex flex-wrap items-center justify-between md:justify-around">
+
+  <header class="flex flex-wrap pt-3 text-white " style="background-color:#">
+
+
+
+
+    <div class="flex  flex-wrap w-auto mx-auto items-center text-black">
+
+      <a  href="/"><button
+        id="home" class="tracking-wide  text-lg  font-medium text-left  px-12 focus:outline-none"
+      >
+        <i class="fa fa-home"></i>
+      </button></a>
+      <a href="/trending"><button id="trending"
+        class="tracking-wide text-lg   font-medium text-center   px-12 focus:outline-none"
+      >
+        <i class="fab fa-hotjar"></i>
+      </button></a>
+      <a  href="/recent">
+
+        <button id="recent" class="tracking-wide text-lg   font-medium text-right  px-12 focus:outline-none"><i class="fa fa-clock"></i></button>
+      </a>
+    </div>
+
+
+
+
+  <div class="p-2 mx-auto w-auto flex ">
+  <div class="bg-white flex border rounded-full shadow-xl">
+    <input id="tags" class="rounded-l-full w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none" type="text" placeholder="#india #meme">
+
+
+    </div>
+  </div>
+
+  </header>
+
+  </div>
+</nav>
+
+
+<script>
+
+     {% if request.resolver_match.url_name == 'home' %}
+     $('#home').addClass('border-b-2 border-blue-500')
+     //console.log($('#home'))
+     {% elif request.resolver_match.url_name == 'trending' %}
+     $('#trending').addClass('border-b-2 border-blue-500')
+     {% elif request.resolver_match.url_name == 'recent' %}
+     $('#recent').addClass('border-b-2 border-blue-500')
+     {% endif %}
+</script>
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+
+
+{% endblock %}

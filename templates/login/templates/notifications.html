@@ -1,0 +1,41 @@
+ <title>Notifications | MemePur | Memes Collection | Free Memes Website | Memes Website | Best memes | Top Memes|Alerts</title>
+<meta name="description" content="Notifications Collection of free memes and top Trending and Best Memes on MemePur"/>
+<meta name="keywords" content="Notifications,Memes, Best free Memes , Top Free Memes , Memes Collection , Indian Memes , MemePur, memepur.in" />
+
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block content %}
+
+<div class="flex flex-col items-center text-center py-8  overflow-auto">
+
+{% for x in notifications %}
+    <a href="{{ x.url }}">
+<div class="flex max-w-md bg-white shadow-lg w-auto rounded-lg overflow-hidden">
+  <div class="flex items-center px-2 py-3">
+    <img class="w-12 h-12 object-cover rounded-full" src="{{ x.pro.socialaccount_set.all.0.get_avatar_url }}" alt="profile">
+    <div class="mx-3">
+        {% if x.read %}
+      <p class="text-gray-600 opacity-50">{{ x.message }}</p>
+        {% else %}
+              <p class="text-black">{{ x.message }}</p>
+        {% endif %}
+    </div>
+      <p class="items-end text-xs md:text-sm pt-px">{{ x.date | naturaltime }}</p>
+  </div>
+</div>
+    </a>
+    <hr class="py-2">
+    {% endfor %}
+
+
+{% if notifications.has_next %}
+<a class="infinite-more-link loading rounded-full bg-pink-400 text-center py-1 text-blue-600 text-xl font-semibold p-2  items-center" href="?page={{ notifications.next_page_number }}">More</a>
+  {% endif %}
+
+
+
+</div>
+
+
+{% endblock %}

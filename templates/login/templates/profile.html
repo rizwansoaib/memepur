@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+ <title>Profile |{{ username }} | MemePur | Memes Collection | Free Memes Website | Memes Website | Best memes | Top Memes|Alerts</title>
+<meta name="description" content="Profile Collection of free memes and top Trending and Best Memes on MemePur"/>
+<meta name="keywords" content="Profile,Memes, Best free Memes , Top Free Memes , Memes Collection , Indian Memes , MemePur, memepur.in" />
+
+
+  <head>
+
+  </head>
+  <body>
+  {% block content %}
+      <!-- nav -->
+
+
+
+
+      <style>
+      .pb-full {
+  padding-bottom: 100%;
+}
+
+/* hide search icon on search focus */
+.search-bar:focus + .fa-search{
+  display: none;
+}
+
+@media screen and (max-width: 2000px) {
+  .post:hover .overlay {
+    display: block;
+  }
+}
+
+      </style>
+
+
+
+      <script>
+
+
+      window.onload=memes('{{ username }}')
+      
+      function follow(username){
+
+                {% if request.user.is_authenticated %}
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/followurl",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            var elem=document.getElementById('follow')
+            x=document.getElementById('followers')
+            let val=parseInt(x.innerText)
+
+            if(elem.innerText=='Follow'){
+              elem.innerText='Following'
+              elem.classList.remove('bg-blue-500') ;
+              elem.classList.add('bg-green-500');
+              x.innerText=(val+1).toString();
+
+            }
+            else{
+                elem.innerText='Follow'
+                elem.classList.remove('bg-green-500') ;
+              elem.classList.add('bg-blue-500');
+              x.innerText=(val-1).toString();
+            }
+        }
+     })
+
+          {% else %}
+
+       location.href="{% url 'login' %}"
+
+
+          {% endif %}
+
+      }
+
+
+
+
+
+
+          function follow_list(username){
+
+                {% if request.user.is_authenticated %}
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/followurl",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            var elem=document.getElementById(username)
+
+            if(elem.innerText=='Follow'){
+              elem.innerText='Following'
+              elem.classList.remove('bg-blue-500') ;
+              elem.classList.add('bg-green-500');
+
+            }
+            else{
+                elem.innerText='Follow'
+                elem.classList.remove('bg-green-500') ;
+              elem.classList.add('bg-blue-500');
+            }
+        }
+     })
+
+          {% else %}
+
+       location.href="{% url 'login' %}"
+
+
+          {% endif %}
+
+
+      }
+
+
+
+
+
+
+      function follower_list(username){
+
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/followers",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            //console.log(data);
+            document.getElementById('title').innerText='Followers';
+            $('#memeactive').removeClass('border-b-2 border-pink-500');
+            $('#likeactive').removeClass('border-b-2 border-pink-500');
+            $('#followeractive').addClass('border-b-2 border-pink-500');
+            $('#followingactive').removeClass('border-b-2 border-pink-500');
+            $('#content').html(data);
+
+        }
+     })
+ }
+
+
+       function following_list(username){
+
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/following",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            //console.log(data);
+            document.getElementById('title').innerText='Following';
+            $('#memeactive').removeClass('border-b-2 border-pink-500');
+            $('#likeactive').removeClass('border-b-2 border-pink-500');
+            $('#followeractive').removeClass('border-b-2 border-pink-500');
+            $('#followingactive').addClass('border-b-2 border-pink-500');
+
+            $('#content').html(data);
+
+        }
+     })
+
+
+      }
+
+
+
+
+
+
+
+
+      function memes(username){
+
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/memes",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            //console.log(data);
+            document.getElementById('title').innerText='Uploaded Memes';
+            $('#memeactive').addClass('border-b-2 border-pink-500');
+            $('#likeactive').removeClass('border-b-2 border-pink-500');
+            $('#followeractive').removeClass('border-b-2 border-pink-500');
+            $('#followingactive').removeClass('border-b-2 border-pink-500');
+
+            $('#content').html(data);
+
+        }
+     })
+
+
+      }
+
+
+
+        function pro_likes(username){
+
+
+          $.ajax(
+    {
+        type:"GET",
+        url: "/pro_likes",
+        data:{
+                 username: username
+        },
+        success: function( data )
+        {
+            //console.log(data);
+            document.getElementById('title').innerText='Liked Memes';
+            $('#memeactive').removeClass('border-b-2 border-pink-500');
+            $('#likeactive').addClass('border-b-2 border-pink-500');
+            $('#followeractive').removeClass('border-b-2 border-pink-500');
+            $('#followingactive').removeClass('border-b-2 border-pink-500');
+            $('#content').html(data);
+
+        }
+     })
+
+
+      }
+
+      
+      </script>
+
+
+
+      <style>
+      .fa-meetup{
+          color:dodgerblue;
+      }
+      .fa-chevron-circle-left{
+          color:indigo;
+      }
+      .fa-chevron-circle-right{
+          color:maroon;
+      }
+      .fa-hashtag{
+          color:lightseagreen;
+      }
+      </style>
+      
+      
+      
+
+<main class="bg-gray-100 bg-opacity-25 flex flex-col overflow-auto">
+
+  <div class="lg:w-8/12 lg:mx-auto mb-8">
+
+    <header class="flex flex-wrap items-center p-4 md:py-8">
+
+      <div class="md:w-3/12 md:ml-16">
+        <!-- profile image -->
+        <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                     border-2 border-pink-600 p-1" src="{{ pro.socialaccount_set.all.0.get_avatar_url }}">
+      </div>
+
+      <!-- profile meta -->
+      <div class="w-8/12 md:w-7/12 ml-4">
+        <div class="md:flex md:flex-wrap md:items-center mb-4">
+          <h2 class="text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0">
+              {{ username }}
+          </h2>
+
+          <!-- badge -->
+          <span class="inline-block fas fa-certificate fa-lg text-blue-500
+                               relative mr-6 text-xl transform -translate-y-2" aria-hidden="true">
+            <i class="fas fa-check text-white text-xs absolute inset-x-0
+                               ml-1 mt-px"></i>
+          </span>
+
+          <!-- follow button -->
+
+                               {% if not request.user.username|stringformat:"s" == username|stringformat:"s" %}
+                                   {% if afollow %}
+                                   <button id="follow" onclick="follow('{{ username }}')" class="bg-green-500 px-2 py-1 text-white text-xl font-semibold text-sm rounded-full text-center">Following</button>
+                                    {% else %}
+                                  <button id="follow" onclick="follow('{{ username }}')" class="bg-blue-500 px-2 py-1 text-white text-xl font-semibold text-sm rounded-full text-center">Follow</button>
+
+                                    {% endif %}
+                               {% endif %}
+        </div>
+
+        <!-- post, following, followers list for medium screens -->
+
+        <!-- user meta form medium screens -->
+
+
+      </div>
+
+      <!-- user meta form small screens -->
+
+
+    </header>
+
+    <!-- posts -->
+    <div class="px-px md:px-2">
+
+      <!-- user following for mobile only -->
+      <ul class="flex  justify-around
+                text-center  text-gray-600 leading-snug text-xl">
+        <li>
+         <button id="memeactive" class="inline-block " onclick="memes('{{ username }}')">
+          <span class="font-semibold text-gray-800 block ">{{ posts_count }}</span>
+          <i class="fa-2x fab fa-meetup"></i>
+           </button>
+        </li>
+
+
+          <li>
+         <button id="likeactive" class="inline-block" onclick="pro_likes('{{ username }}')">
+
+          <span class="font-semibold text-gray-800 block">{{ liked_count }}</span>
+          <i class="fa-2x fas fa-heart"></i>
+         </button>
+        </li>
+
+
+        <li>
+         <button id="followeractive" class="inline-block " onclick="follower_list('{{ username }}')">
+          <span id="followers" class="font-semibold text-gray-800 block">{{ follower_count }}</span>
+                    <i class="fa-2x fas fa-chevron-circle-left"></i>
+          </button>
+        </li>
+        <li>
+           <button id="followingactive" class="inline-block" onclick="following_list('{{ username }}')">
+          <span  class="font-semibold text-gray-800 block">{{ following_count }}</span>
+            <i class="fa-2x fas fa-chevron-circle-right"></i>           </button>
+        </li>
+
+      </ul>
+
+
+
+        <!-- column -->
+
+<hr class="py-2 text-pink-500"></hr>
+
+<div id="title" class="p-2 items-center text-center  transition duration-500 ease-out text-blue-500  transform hover:-translate-y-2 rounded-xl  text-4xl "></div>
+
+<div id="content">
+
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</main>
+  {% endblock %}
+  </body>
+</html>

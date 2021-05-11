@@ -1,0 +1,104 @@
+
+
+
+
+<html>
+<head>
+
+ <title>Login | MemePur | Memes Collection | Free Memes Website | Memes Website | Best memes | Top Memes|Alerts</title>
+<meta name="description" content="Login Collection of free memes and top Trending and Best Memes on MemePur"/>
+<meta name="keywords" content="Login,Sign UP ,Account,Memes, Best free Memes , Top Free Memes , Memes Collection , Indian Memes , MemePur, memepur.in" />
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="min-h-screen flex justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full">
+    <div>
+
+
+
+      <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+        Memepur Login
+      </h2>
+    </div>
+
+
+      <a href="/accounts/google/login/?process=login">
+      <div class="mt-6">
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-green-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-red-500 group-hover:text-red-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+               </svg>
+              <i class="fab fa-google"></i>
+          </span>
+           Google
+        </button>
+      </div>
+          </a>
+
+
+      <a href="/accounts/facebook/login/?process=login">
+      <div class="mt-6">
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-green-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-red active:bg-blue-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+               </svg>
+              <i class="fab fa-facebook"></i>
+          </span>
+          Facebook
+        </button>
+      </div>
+          </a>
+
+
+       <a href="/accounts/twitter/login/?process=login">
+      <div class="mt-6">
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-400 hover:bg-green-500 focus:outline-none focus:border-blue-400 focus:shadow-outline-red active:bg-blue-400 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-blue-400 group-hover:text-blue-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+               </svg>
+              <i class="fab fa-twitter"></i>
+          </span>
+            Twitter
+        </button>
+      </div>
+          </a>
+
+     <!--
+      <a href="/accounts/google/login/?process=login">
+      <div class="mt-6">
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-400 hover:bg-green-500 focus:outline-none focus:border-red-400 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-red-500 group-hover:text-red-400 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
+               </svg>
+              <i class="fab fa-instagram"></i>
+          </span>
+            Instagram
+        </button>
+      </div>
+          </a>
+
+          -->
+
+
+
+  </div>
+</div>
+
+
+{% endblock %}
+</body>
+</html>
+
